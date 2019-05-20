@@ -4,6 +4,7 @@ import { url, port } from './server';
 const URL = `http://${url}:${port}`;
 const URLListVinculations = `http://${url}:${port}/list_vinculations`;
 const URLList = `http://${url}:${port}/lists`;
+const URLSongVinculations = `http://${url}:${port}/song_vinculations`;
 
 const resolvers = {
 	Query: {
@@ -16,6 +17,11 @@ const resolvers = {
 			getRequest(URLList, ''),
 		ListById: (_, { id }) =>
 			generalRequest(`${URLList}/${id}`, 'GET'),
+
+		allSongVinculations: (_) =>
+			getRequest(URLSongVinculations, ''),
+		SongVinculationsById: (_, { id }) =>
+			generalRequest(`${URLSongVinculations}/${id}`, 'GET'),
 	},
 	Mutation: {
 		createListVinculations: (_, { listvinculations }) =>
@@ -30,7 +36,15 @@ const resolvers = {
 		updateList: (_, { id, list }) =>
 			generalRequest(`${URLList}/${id}`, 'PUT', list),
 		deleteList: (_, { id }) =>
-			generalRequest(`${URLList}/${id}`, 'DELETE')
+			generalRequest(`${URLList}/${id}`, 'DELETE'),
+
+		createSongVinculations: (_, { songvinculations }) =>
+			generalRequest(`${URLSongVinculations}`, 'POST', songvinculations),
+		updateSongVinculations: (_, { id, songvinculations }) =>
+			generalRequest(`${URLSongVinculations}/${id}`, 'PUT', songvinculations),
+		deleteSongVinculations: (_, { id }) =>
+			generalRequest(`${URLSongVinculations}/${id}`, 'DELETE')
+	
 	}
 };
 

@@ -5,6 +5,7 @@ type List {
     image: String!
     user_id: Int!
     list_vinculations: [ListVinculations]
+    song_vinculations: [SongVinculations]
  }
 
  input ListInput {
@@ -22,6 +23,16 @@ input ListVinculationsInput {
     user_id: Int!
     list_id: Int!
 }
+
+type SongVinculations {
+    id: Int
+    song_id: String!
+    list: List
+}
+input SongVinculationsInput {
+    song_id: String!
+    list_id: Int!
+}
 `;
 
 
@@ -30,8 +41,12 @@ input ListVinculationsInput {
 export const listsQueries = `
     allListVinculations: [ListVinculations]!
     ListVinculationsById(id: Int!): ListVinculations!
+
     allList: [List]!
     ListById(id: Int!): List!
+
+    allSongVinculations: [SongVinculations]!
+    SongVinculationsById(id: Int!): SongVinculations!
 `;
 
 export const listsMutations = `
@@ -42,4 +57,8 @@ export const listsMutations = `
     createList(list: ListInput!): List!
     deleteList(id: Int!): Int
     updateList(id: Int!, list: ListInput!): List!
+
+    createSongVinculations(songvinculations: SongVinculationsInput!): SongVinculations!
+    deleteSongVinculations(id: Int!): Int
+    updateSongVinculations(id: Int!, songvinculations: SongVinculationsInput!): SongVinculations!
 `;
