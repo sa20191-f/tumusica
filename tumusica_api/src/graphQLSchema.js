@@ -18,8 +18,13 @@ import {
 	listsTypeDef
 } from './lists/typeDefs';
 
-import listsResolvers from './lists/resolvers';
+import {
+  playQueries,
+  playTypeDef
+} from './play/typeDefs'
 
+import listsResolvers from './lists/resolvers';
+import playResolvers from './play/resolvers';
 
 
 // merge the typeDefs
@@ -27,11 +32,13 @@ const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
 		coursesTypeDef,
-		listsTypeDef
+    listsTypeDef,
+    playTypeDef
 	],
 	[
 		coursesQueries,
-		listsQueries
+    listsQueries,
+    playQueries
 	],
 	[
 		coursesMutations,
@@ -46,6 +53,11 @@ export default makeExecutableSchema({
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		coursesResolvers,
-		listsResolvers
-	)
+    listsResolvers,
+    playResolvers
+  ),
+  uploads: {
+    maxFileSize: 18000000, // 18 MB
+    maxFiles: 20
+  }
 });

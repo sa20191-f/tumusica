@@ -8,9 +8,12 @@ services:
       COURSES_URL: '192.168.99.101'
       COURSES_PORT: '4000'
       COURSES_ENTRY: 'courses-ms/resources/courses'
-      LISTS_URL: '192.168.99.101'
+      LISTS_URL: '192.168.1.68'
       LISTS_PORT: '4000'
       LISTS_ENTRY: '/'
+      PLAY_URL: '192.168.1.68'
+      PLAY_PORT: '3004'
+      PLAY_ENTRY: '/api'
     ports:
       - '5000:5000'
   
