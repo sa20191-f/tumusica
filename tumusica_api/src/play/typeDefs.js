@@ -18,6 +18,7 @@ export const playTypeDef = `
 export const playQueries = `
   getSongs: [Song]!
   playSong(idSong: String): Song!
+  songTest: String!
 `;
 
 export const playMutations = `
