@@ -14,6 +14,10 @@ services:
       PLAY_URL: '192.168.1.68'
       PLAY_PORT: '3004'
       PLAY_ENTRY: '/api'
+      #USERS_URL: '192.168.99.102' local
+      USERS_URL: '192.168.1.68' 
+      USERS_PORT: '3001'
+      USERS_ENTRY: 'api/v1'
     ports:
       - '5000:5000'
   
