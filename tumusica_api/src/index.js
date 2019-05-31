@@ -1,5 +1,4 @@
 import graphQLSchema from './graphQLSchema';
-import { formatErr } from './utilities';
 import { GraphQLServer } from "graphql-yoga";
 
 const options = {

@@ -20,7 +20,8 @@ import {
 
 import {
   playQueries,
-  playTypeDef
+  playTypeDef,
+  playMutations,
 } from './play/typeDefs'
 
 import listsResolvers from './lists/resolvers';
@@ -30,7 +31,8 @@ import playResolvers from './play/resolvers';
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
-		'scalar JSON',
+    'scalar JSON',
+    'scalar Upload',
 		coursesTypeDef,
     listsTypeDef,
     playTypeDef
@@ -42,7 +44,8 @@ const mergedTypeDefs = mergeSchemas(
 	],
 	[
 		coursesMutations,
-		listsMutations
+    listsMutations,
+    playMutations
 	]
 
 );
