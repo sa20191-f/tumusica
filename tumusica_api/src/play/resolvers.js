@@ -1,6 +1,8 @@
+import request from 'request-promise-native';
 import { GraphQLUpload } from 'graphql-upload'
 import { generalRequest, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
+import fs from 'fs';
 
 // const URL = `http://${url}:${port}${entryPoint}`;
 const URL = "http://127.0.0.1:3004/api";
@@ -20,24 +22,30 @@ const resolvers = {
   },
   Mutation: {
     async uploadSong(parent, { file }) {
-      console.log(file);
-      const { stream, filename, mimetype, encoding } = await file;
-
-      console.log(filename);
-      console.log(mimetype);
-      console.log(encoding);
-      console.log(stream);
-      // 1. Validate file metadata.
-
-      // 2. Stream file contents into cloud storage:
-      // https://nodejs.org/api/stream.html
-
-      // 3. Record the file upload in your DB.
-      // const id = await recordFile( … )
-      
+      const { createReadStream, filename, mimetype, encoding } = await file;
+      const stream = createReadStream();
+      const pathFile = `/home/app/temp/${filename}-${Date.now()}`;
+      const wstream = fs.createWriteStream(pathFile);
+      // Saving file in graphql 
+      stream.pipe(wstream);
+      stream.on('end', async function () {  
+        await request.post('http://127.0.0.1:3002/upload_song', {
+          formData: {
+            myFile: {
+              value: fs.createReadStream(pathFile),
+              options: {
+                filename,
+                contentType: mimetype,
+                encoding: encoding,
+              }
+            },
+          },
+        });
+        fs.unlink(pathFile);
+      });
       return { filename, mimetype, encoding };
     }
   }
 };
-
 export default resolvers;
+ 

@@ -23,5 +23,5 @@ export const playQueries = `
 `;
 
 export const playMutations = `
-  uploadSong(file: Upload): File!
+  uploadSong(file: Upload!): File!
 `;
