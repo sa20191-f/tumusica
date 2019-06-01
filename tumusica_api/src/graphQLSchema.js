@@ -28,11 +28,17 @@ import {
   usersMutations,
 } from './users/typeDefs'
 
+import {
+  uploadTypeDef,
+  uploadQueries,
+  uploadMutations
+} from './upload/typeDefs'
+
 import coursesResolvers from './courses/resolvers';
 import listsResolvers from './lists/resolvers';
 import playResolvers from './play/resolvers';
 import usersResolvers from './users/resolvers';
-
+import uploadResolvers from './upload/resolvers';
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
@@ -42,19 +48,22 @@ const mergedTypeDefs = mergeSchemas(
 		coursesTypeDef,
     listsTypeDef,
 		playTypeDef,
-		usersTypeDef
+    usersTypeDef,
+    uploadTypeDef
 	],
 	[
 		coursesQueries,
     listsQueries,
 		playQueries,
-		usersQueries
+    usersQueries,
+    uploadQueries
 	],
 	[
 		coursesMutations,
     listsMutations,
 		playMutations,
-		usersMutations
+    usersMutations,
+    uploadMutations
 	]
 
 );
@@ -67,7 +76,8 @@ export default makeExecutableSchema({
 		coursesResolvers,
     listsResolvers,
 		playResolvers,
-		usersResolvers
+    usersResolvers,
+    uploadResolvers,
   ),
   uploads: {
     maxFileSize: 18000000, // 18 MB
