@@ -8,16 +8,15 @@ services:
       COURSES_URL: '192.168.99.101'
       COURSES_PORT: '4000'
       COURSES_ENTRY: 'courses-ms/resources/courses'
-      LISTS_URL: '192.168.1.68'
+      LISTS_URL: '192.168.99.101'
       LISTS_PORT: '4000'
       LISTS_ENTRY: '/'
-      PLAY_URL: '192.168.1.68'
+      PLAY_URL: '192.168.99.101'
       PLAY_PORT: '3004'
       PLAY_ENTRY: '/api'
       #USERS_URL: '192.168.99.102' local
-      USERS_URL: '192.168.1.68' 
+      USERS_URL: '192.168.99.101' 
       USERS_PORT: '3001'
       USERS_ENTRY: 'api/v1'
     ports:
       - '5000:5000'
-  

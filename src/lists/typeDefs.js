@@ -33,6 +33,10 @@ input SongVinculationsInput {
     song_id: String!
     list_id: Int!
 }
+
+input SearchLists{
+    name: String!
+}
 `;
 
 
@@ -47,6 +51,8 @@ export const listsQueries = `
 
     allSongVinculations: [SongVinculations]!
     SongVinculationsById(id: Int!): SongVinculations!
+
+    ListByName(name: SearchLists!): [List]!
 `;
 
 export const listsMutations = `

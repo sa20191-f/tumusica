@@ -22,6 +22,9 @@ const resolvers = {
 			getRequest(URLSongVinculations, ''),
 		SongVinculationsById: (_, { id }) =>
 			generalRequest(`${URLSongVinculations}/${id}`, 'GET'),
+
+		ListByName: (_,{name})=>
+			generalRequest(`http://${url}:${port}/searchlists`,'POST',name)	
 	},
 	Mutation: {
 		createListVinculations: (_, { listvinculations }) =>
