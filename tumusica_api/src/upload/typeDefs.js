@@ -8,6 +8,7 @@ export const uploadTypeDef = `
 `;
 
 export const uploadQueries = `
+  uploads(path: String): Upload!
 `;
 
 export const uploadMutations = `
