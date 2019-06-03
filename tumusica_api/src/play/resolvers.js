@@ -10,8 +10,6 @@ const resolvers = {
 	Query: {
     songTest: (_) => 
       getRequest(`${URL}/test`, ''),
-		getSongs: (_) =>
-      getRequest(`${URL}/songs`, ''),
     playSong: (_, { idSong }) =>
       generalRequest(`${URL}/songs/${idSong}`, 'GET'),
   },

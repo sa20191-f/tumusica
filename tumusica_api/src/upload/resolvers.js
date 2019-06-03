@@ -28,7 +28,6 @@ const resolvers = {
             },
           },
         });
-        console.log('SUCCESSFUL');
         // Delete file in graphql
         fs.unlink(pathFile);
       });
