@@ -1,5 +1,5 @@
 export const playTypeDef = `
-  type Song {
+  type Song_Path {
     id: String
     path: String!
     v: Int!
@@ -7,7 +7,7 @@ export const playTypeDef = `
 `;
 
 export const playQueries = `
-  playSong(idSong: String): Song!
+  playSong(idSong: String): Song_Path!
   songTest: String!
 `;
 
