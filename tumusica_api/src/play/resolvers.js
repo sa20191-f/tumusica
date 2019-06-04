@@ -12,6 +12,8 @@ const resolvers = {
       getRequest(`${URL}/test`, ''),
     playSong: (_, { idSong }) =>
       generalRequest(`${URL}/songs/${idSong}`, 'GET'),
+    songs: (_) =>
+      getRequest(`${URL}/songs`, ''),
   },
 };
 export default resolvers;
