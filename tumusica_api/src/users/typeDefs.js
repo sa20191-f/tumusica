@@ -10,8 +10,9 @@ input UserInput {
     email: String!
     password: String!
 }
-type Token {
+type LoginInfo {
     token: String!
+    id: Int!
 }
 type Logout {
     message: String!
@@ -29,5 +30,5 @@ export const usersQueries = `
 
 export const usersMutations = `
     createUser(user: UserInput!): User!
-    loginUser(user: UserInput!): Token!
+    loginUser(user: UserInput!): LoginInfo!
 `;

@@ -5,6 +5,8 @@ export const playTypeDef = `
     song_name: String!
     artist: String!
     v: Int!
+    artist: String!
+    song_name: String!
   }
 `;
 
