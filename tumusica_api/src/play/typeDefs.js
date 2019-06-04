@@ -3,6 +3,8 @@ export const playTypeDef = `
     id: String
     path: String!
     v: Int!
+    artist: String!
+    song_name: String!
   }
 `;
 
