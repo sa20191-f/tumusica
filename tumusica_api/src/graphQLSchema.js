@@ -34,11 +34,18 @@ import {
   uploadMutations
 } from './upload/typeDefs'
 
+import {
+  wsinterfaceTypeDef,
+  wsinterfaceQueries,
+  wsinterfaceMutations
+} from './wsinterface/typeDefs'
+
 import coursesResolvers from './courses/resolvers';
 import listsResolvers from './lists/resolvers';
 import playResolvers from './play/resolvers';
 import usersResolvers from './users/resolvers';
 import uploadResolvers from './upload/resolvers';
+import wsinterfaceResolvers from './wsinterface/resolvers';
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
@@ -49,21 +56,24 @@ const mergedTypeDefs = mergeSchemas(
     listsTypeDef,
 		playTypeDef,
     usersTypeDef,
-    uploadTypeDef
-	],
+    uploadTypeDef,
+    wsinterfaceTypeDef
+  ],
 	[
 		coursesQueries,
     listsQueries,
 		playQueries,
     usersQueries,
-    uploadQueries
+    uploadQueries,
+    wsinterfaceQueries
 	],
 	[
 		coursesMutations,
     listsMutations,
 		playMutations,
     usersMutations,
-    uploadMutations
+    uploadMutations,
+    wsinterfaceMutations
 	]
 
 );
@@ -78,6 +88,7 @@ export default makeExecutableSchema({
 		playResolvers,
     usersResolvers,
     uploadResolvers,
+    wsinterfaceResolvers
   ),
   uploads: {
     maxFileSize: 18000000, // 18 MB
