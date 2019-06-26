@@ -13,6 +13,7 @@ type List {
     name: String!
     image: String!
     user_id: Int!
+    email: String!
  }
 
 type ListVinculations {
