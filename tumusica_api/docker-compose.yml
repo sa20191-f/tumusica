@@ -4,22 +4,24 @@ services:
     build: .
     environment:
       SHOW_URLS: 'true'
-      LISTS_URL: '192.168.99.101'
+      LISTS_URL: '192.168.1.72'
       LISTS_PORT: '4000'
       LISTS_ENTRY: '/'
-      PLAY_URL: '192.168.99.101'
+      PLAY_URL: '192.168.1.72'
       PLAY_PORT: '3004'
       PLAY_ENTRY: '/api'
       #USERS_URL: '192.168.99.102' local
-      USERS_URL: '192.168.99.101' 
+      USERS_URL: '192.168.1.72' 
       USERS_PORT: '3001'
       USERS_ENTRY: 'api/v1'
-      UPLOAD_URL: '192.168.99.101'
+      UPLOAD_URL: '192.168.1.72'
       UPLOAD_PORT: '3002'
       UPLOAD_ENTRY: ''
-      PATH_URL: '192.168.99.101'
+      PATH_URL: '192.168.1.72'
       PATH_PORT: '3003'
       PATH_ENTRY: ''
+      EXPO_NOTIFICATION: "https://exp.host/--/api/v2/push/send"
+      WEB_NOTIFICATION: "https://fcm.googleapis.com/fcm/send"
     ports:
       - '5000:5000'
   

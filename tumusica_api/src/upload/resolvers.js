@@ -50,7 +50,7 @@ const resolvers = {
             headers: 
             {
               'Content-Type': 'application/json' },
-            body: { "path": obj.filename, "song_name": "song_name", "artist": "artist"},
+            body: { "path": obj.filename, "song_name": obj.originalname, "artist": "artist"},
             json: true };
           console.log(options)
           request2(options, function (error, response, body) {
