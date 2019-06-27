@@ -4,6 +4,7 @@ type List {
     name: String!
     image: String!
     user_id: Int!
+    email: String!
     list_vinculations: [ListVinculations]
     song_vinculations: [SongVinculations]
  }
@@ -12,6 +13,7 @@ type List {
     name: String!
     image: String!
     user_id: Int!
+    email: String!
  }
 
 type ListVinculations {

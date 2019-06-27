@@ -15,7 +15,10 @@ const resolvers = {
 		dummy: (_) =>
       getRequest(`${URL}/songs`, ''),
     getTokens: (userId) => 
-      getRequest(`${URL_TOKEN}${userId}`, '')
+      getRequest(`${URL_TOKEN}${userId}`, ''),
+		userInfo: (_) =>
+			getRequest(`${URL}/info`, ''),
+
 	},
 	Mutation: {
 		createUser: (_, { user }) =>

@@ -15,4 +15,6 @@ RUN npm install
 COPY . /git/tumusica-api/
 RUN npm run prepublish
 
+EXPOSE 5000
+
 CMD [ "npm", "run", "runServer" ]
