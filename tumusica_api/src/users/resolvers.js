@@ -13,6 +13,9 @@ const resolvers = {
 			getRequest(`${URL}/logout`, ''),
 		dummy: (_) =>
 			getRequest(`${URL}/songs`, ''),
+		userInfo: (_) =>
+			getRequest(`${URL}/info`, ''),
+
 	},
 	Mutation: {
 		createUser: (_, { user }) =>

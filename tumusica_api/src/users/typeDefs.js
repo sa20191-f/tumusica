@@ -10,9 +10,17 @@ input UserInput {
     email: String!
     password: String!
 }
-type LoginInfo {
+type Token{
     token: String!
+}
+type LoginInfo {
+    token: Token!
     id: Int!
+}
+type userInfo{
+    id: Int!
+    username: String!
+    email: String!
 }
 type Logout {
     message: String!
