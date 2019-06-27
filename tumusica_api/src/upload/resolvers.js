@@ -20,6 +20,7 @@ const resolvers = {
   },
   Mutation: {
     async uploadSong(parent, { file }) {
+      
       const { createReadStream, filename, mimetype, encoding } = await file;
       const stream = createReadStream();
       const pathFile = `/home/app/temp/${Date.now()}-${filename}`;
@@ -49,7 +50,7 @@ const resolvers = {
             headers: 
             {
               'Content-Type': 'application/json' },
-            body: { path: obj.filename},
+            body: { "path": obj.filename, "song_name": "song_name", "artist": "artist"},
             json: true };
           console.log(options)
           request2(options, function (error, response, body) {
