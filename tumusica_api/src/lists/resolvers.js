@@ -37,7 +37,8 @@ const resolvers = {
 		createList: async(_, { list }) => {
       generalRequest(`${URLList}`, 'POST', list);
       const tokens = await usersResolvers.Query.getTokens(list.user_id);
-      const requestBody = [];
+      // SEND TO MOBILE
+      let requestBody = [];
       tokens.map(element => {
         if (element.tokenType == 1) {
           requestBody.push({
@@ -55,6 +56,29 @@ const resolvers = {
       });
       request.post(process.env.EXPO_NOTIFICATION, {
         headers: { 'Content-Type': 'application/json' },
+        body: requestBody,
+        json: true
+      });
+      // SEND TO WEB
+      requestBody = {};
+      tokens.map(element => {
+        if (element.tokenType == 2) {
+          requestBody = {
+            data: {
+              message: "Has creado una nueva lista",
+              type: "LIST_CREATED",
+              body: "Felicidades puedes adicionar a tu lista tu musica preferida"
+            },
+            to: element.token
+          };
+        }
+        return true;
+      });
+      request.post(process.env.WEB_NOTIFICATION, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': 'key=AAAAfBIen2Q:APA91bHiZJJ-8juaH41ZrTC72c0t7YVXexG5aV0TlLIkY4x5UlFxZcEWWsTO7zEAkkYtRs_MF9jpL5E-3h7E-jArTCMNnFe1kz1cxjldPn_Fyfx2Z84tStSSSDTGNlzGn29R2LQVnDmA',
+        },
         body: requestBody,
         json: true
       });

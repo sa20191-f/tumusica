@@ -17,7 +17,7 @@ type LoginInfo {
     token: Token!
     id: Int!
 }
-type userInfo{
+type userInfo { 
     id: Int!
     username: String!
     email: String!
@@ -46,6 +46,7 @@ export const usersQueries = `
     logoutUser: Logout!
     dummy: [DummySong]!
     getTokens: [TokenInfo]!
+    userInfo: userInfo!
 `;
 
 export const usersMutations = `
