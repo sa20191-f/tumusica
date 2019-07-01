@@ -28,7 +28,8 @@ const resolvers = {
 		addToken: async (_, { token }) => {
       const response = await generalRequest(`${URL_TOKEN}${token.userID}`, '');
       const elements = [];
-      if (response.isArray()) {
+      console.log(response);
+      /* if (response.isArray()) {
         response.map(element => {
           if (element.tokenType == token.tokenType && element.token == token.token) {
             elements.push(element);
@@ -39,7 +40,7 @@ const resolvers = {
         if (elements.length > 0) {
           return elements[0];
         }
-      }
+      } */
 			generalRequest(`${URL_TOKEN}`, 'POST', token)
     },
 	}
