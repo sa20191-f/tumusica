@@ -39,18 +39,22 @@ const resolvers = {
       const tokens = await usersResolvers.Query.getTokens(list.user_id);
       // SEND TO MOBILE
       let requestBody = [];
+      let tokenPhone = [];
       tokens.map(element => {
         if (element.tokenType == 1) {
-          requestBody.push({
-            data: {
-              message: "Has creado una nueva lista",
-              type: "LIST_CREATED",
-              body: "Felicidades puedes adicionar a tu lista tu musica preferida"
-            },
-            title: "Has creado una nueva lista",
-            body: "Felicidades puedes adicionar a tu lista tu musica preferida",
-            to: element.token
-          });
+          if (!tokenPhone.includes(element.token)) {
+            tokenPhone.push(element.token);
+            requestBody.push({
+              data: {
+                message: "Has creado una nueva lista",
+                type: "LIST_CREATED",
+                body: "Felicidades puedes adicionar a tu lista tu musica preferida"
+              },
+              title: "Has creado una nueva lista",
+              body: "Felicidades puedes adicionar a tu lista tu musica preferida",
+              to: element.token
+            });
+          }
         }
         return true;
       });
