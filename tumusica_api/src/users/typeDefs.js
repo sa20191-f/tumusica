@@ -39,13 +39,17 @@ type TokenInfo {
     tokenType: Int!
     token: String!
 }
+input TokenData{
+    token: String!
+}
 `;
 
 export const usersQueries = `
     allUsers: [User]!
     logoutUser: Logout!
-    dummy: [DummySong]!
-    userInfo: Info!
+    dummy(token: TokenData): [DummySong]!
+    getTokens(userID: String!): TokenInfo!
+    userInfo(token: TokenData): Info!
 `;
 
 export const usersMutations = `

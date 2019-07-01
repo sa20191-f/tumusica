@@ -1,4 +1,4 @@
-import { generalRequest, getRequest } from '../utilities';
+import { generalRequest, generalRequest1, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
@@ -12,20 +12,20 @@ const resolvers = {
 			getRequest(`${URL}/users`, ''),
 		logoutUser: (_) =>
 			getRequest(`${URL}/logout`, ''),
-		dummy: (_) =>
-      getRequest(`${URL}/songs`, ''),
-    getTokens: (userId) => 
-      getRequest(`${URL_TOKEN}${userId}`, ''),
-		userInfo: (_) =>
-			getRequest(`${URL}/info`, ''),
+		dummy: (_,{ token }) =>
+			generalRequest1(`${URL}/songs`, '',_,token.token),
+    	getTokens: (userID) => 
+			generalRequest(`${URL_TOKEN}${userID}`, ''),
+		userInfo: (_,{ token }) =>
+			generalRequest1(`${URL}/info`, '',_,token.token),
 
 	},
 	Mutation: {
 		createUser: (_, { user }) =>
 			generalRequest(`${URL_REGISTER}`, 'POST', user),
 		loginUser: (_, { user }) =>
-      generalRequest(`${URL_LOGIN}`, 'POST', user),
-    addToken: (_, { token }) =>
+      		generalRequest(`${URL_LOGIN}`, 'POST', user),
+		addToken: (_, { token }) =>
 			generalRequest(`${URL_TOKEN}`, 'POST', token),
 	}
 };
