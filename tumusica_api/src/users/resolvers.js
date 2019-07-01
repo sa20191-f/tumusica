@@ -28,19 +28,18 @@ const resolvers = {
 		addToken: async (_, { token }) => {
       const response = await generalRequest(`${URL_TOKEN}${token.userID}`, '');
       const elements = [];
-      console.log(response);
-      /* if (response.isArray()) {
+      console.log(typeof response !== 'object');
+      if (typeof response !== 'object') {
         response.map(element => {
           if (element.tokenType == token.tokenType && element.token == token.token) {
             elements.push(element);
           }
           return true;
         });
-        console.log(elements);
         if (elements.length > 0) {
           return elements[0];
         }
-      } */
+      }
 			generalRequest(`${URL_TOKEN}`, 'POST', token)
     },
 	}
