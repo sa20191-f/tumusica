@@ -63,7 +63,9 @@ const resolvers = {
         fs.unlink(pathFile);
       });
       return { filename, mimetype, encoding };
-    }
+    },
+    uploadInfoSong: (_, { infoSong }) =>
+			generalRequest(`${PATH_URL}/song-path`, 'POST', infoSong),          
   }
 };
 export default resolvers;
