@@ -27,10 +27,13 @@ const resolvers = {
       		generalRequest(`${URL_LOGIN}`, 'POST', user),
 		addToken: async (_, { token }) => {
       const response = await generalRequest(`${URL_TOKEN}${token.userID}`, '');
-      const elements = response.filter(x => x.tokenType == token.tokenType && x.token == token.token);
-      console.log(response);
-      console.log(elements);
-      console.log(elements.length);
+      const elements = []
+      response.map(element => {
+        if (element.tokenType == token.tokenType && element.token == token.token) {
+          elements.push(element);
+        }
+        return true;
+      });
       if (elements.length > 0) {
         return elements[0];
       } 
