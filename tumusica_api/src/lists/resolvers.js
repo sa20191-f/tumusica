@@ -62,8 +62,10 @@ const resolvers = {
       console.log("REQUEST BODY PARA MOVIL");
       console.log(requestBody);
       console.log(process.env.EXPO_NOTIFICATION);
-      request.post("https://exp.host/--/api/v2/push/send", {
+      request({
+        uri: "https://exp.host/--/api/v2/push/send", 
         headers: { 'Content-Type': 'application/json' },
+        method: "POST",
         body: requestBody,
         json: true
       });
@@ -86,7 +88,9 @@ const resolvers = {
       console.log("REQUEST BODY PARA WEB");
       console.log(requestBody);
       console.log(process.env.WEB_NOTIFICATION);
-      request.post(process.env.WEB_NOTIFICATION, {
+      request({
+        uri: "https://fcm.googleapis.com/fcm/send",
+        method: "POST",
         headers: { 
           'Content-Type': 'application/json',
           'Authorization': 'key=AAAAfBIen2Q:APA91bHiZJJ-8juaH41ZrTC72c0t7YVXexG5aV0TlLIkY4x5UlFxZcEWWsTO7zEAkkYtRs_MF9jpL5E-3h7E-jArTCMNnFe1kz1cxjldPn_Fyfx2Z84tStSSSDTGNlzGn29R2LQVnDmA',
