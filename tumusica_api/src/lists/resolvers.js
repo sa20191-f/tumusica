@@ -36,12 +36,7 @@ const resolvers = {
 
 		createList: async(_, { list }) => {
       generalRequest(`${URLList}`, 'POST', list);
-      console.log("CREATE LIST");
-      console.log("LIST");
-      console.log(list);
       const tokens = await usersResolvers.Query.getTokens(list.user_id);
-      console.log("OBTUVE TOKENS");
-      console.log(tokens);
       // SEND TO MOBILE
       let requestBody = [];
       tokens.map(element => {
@@ -59,9 +54,6 @@ const resolvers = {
         }
         return true;
       });
-      console.log("REQUEST BODY PARA MOVIL");
-      console.log(requestBody);
-      console.log(process.env.EXPO_NOTIFICATION);
       request({
         uri: "https://exp.host/--/api/v2/push/send", 
         headers: { 'Content-Type': 'application/json' },
@@ -85,9 +77,6 @@ const resolvers = {
         }
         return true;
       });
-      console.log("REQUEST BODY PARA WEB");
-      console.log(requestBody);
-      console.log(process.env.WEB_NOTIFICATION);
       request({
         uri: "https://fcm.googleapis.com/fcm/send",
         method: "POST",
