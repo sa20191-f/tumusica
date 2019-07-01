@@ -27,16 +27,19 @@ const resolvers = {
       		generalRequest(`${URL_LOGIN}`, 'POST', user),
 		addToken: async (_, { token }) => {
       const response = await generalRequest(`${URL_TOKEN}${token.userID}`, '');
-      const elements = []
-      response.map(element => {
-        if (element.tokenType == token.tokenType && element.token == token.token) {
-          elements.push(element);
+      const elements = [];
+      if (response.isArray()) {
+        response.map(element => {
+          if (element.tokenType == token.tokenType && element.token == token.token) {
+            elements.push(element);
+          }
+          return true;
+        });
+        console.log(elements);
+        if (elements.length > 0) {
+          return elements[0];
         }
-        return true;
-      });
-      if (elements.length > 0) {
-        return elements[0];
-      } 
+      }
 			generalRequest(`${URL_TOKEN}`, 'POST', token)
     },
 	}
