@@ -10,9 +10,17 @@ input UserInput {
     email: String!
     password: String!
 }
-type LoginInfo {
+type Token{
     token: String!
+}
+type LoginInfo {
+    token: Token!
     id: Int!
+}
+type Info{
+    id: Int!
+    username: String!
+    email: String!
 }
 type Logout {
     message: String!
@@ -20,15 +28,32 @@ type Logout {
 type DummySong {
     title: String!
     artist: String!
-}`;
+}
+input TokenInput {
+    userID: Int!
+    tokenType: Int!
+    token: String!
+}
+type TokenInfo {
+    id: Int!
+    tokenType: Int!
+    token: String!
+}
+input TokenData{
+    token: String!
+}
+`;
 
 export const usersQueries = `
     allUsers: [User]!
     logoutUser: Logout!
-    dummy: [DummySong]!
+    dummy(token: TokenData): [DummySong]!
+    getTokens(userID: String!): TokenInfo!
+    userInfo(token: TokenData): Info!
 `;
 
 export const usersMutations = `
     createUser(user: UserInput!): User!
     loginUser(user: UserInput!): LoginInfo!
+    addToken(token: TokenInput!): String!
 `;
