@@ -14,7 +14,7 @@ const resolvers = {
 			getRequest(`${URL}/logout`, ''),
 		dummy: (_,{ token }) =>
 			generalRequest1(`${URL}/songs`, '',_,token.token),
-    	getTokens: (userID) => 
+    getTokens: (userID) => 
 			generalRequest(`${URL_TOKEN}${userID}`, ''),
 		userInfo: (_,{ token }) =>
 			generalRequest1(`${URL}/info`, '',_,token.token),
@@ -25,8 +25,17 @@ const resolvers = {
 			generalRequest(`${URL_REGISTER}`, 'POST', user),
 		loginUser: (_, { user }) =>
       		generalRequest(`${URL_LOGIN}`, 'POST', user),
-		addToken: (_, { token }) =>
-			generalRequest(`${URL_TOKEN}`, 'POST', token),
+		addToken: async (_, { token }) => {
+      /* const response = await generalRequest(`${URL_TOKEN}${token.userID}`, '');
+      const elements = response.filter(x => x.tokenType == token.tokenType && x.token == token.token);
+      console.log(response);
+      console.log(elements);
+      console.log(elements.length);
+      if (elements.length > 0) {
+        return elements[0];
+      } */ 
+			generalRequest(`${URL_TOKEN}`, 'POST', token)
+    },
 	}
 };
 

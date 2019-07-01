@@ -36,7 +36,12 @@ const resolvers = {
 
 		createList: async(_, { list }) => {
       generalRequest(`${URLList}`, 'POST', list);
+      console.log("CREATE LIST");
+      console.log("LIST");
+      console.log(list);
       const tokens = await usersResolvers.Query.getTokens(list.user_id);
+      console.log("OBTUVE TOKENS");
+      console.log(tokens);
       // SEND TO MOBILE
       let requestBody = [];
       tokens.map(element => {
@@ -54,11 +59,14 @@ const resolvers = {
         }
         return true;
       });
+      console.log("REQUEST BODY PARA MOVIL");
+      console.log(requestBody);
       request.post(process.env.EXPO_NOTIFICATION, {
         headers: { 'Content-Type': 'application/json' },
         body: requestBody,
         json: true
       });
+
       // SEND TO WEB
       requestBody = {};
       tokens.map(element => {
@@ -74,6 +82,8 @@ const resolvers = {
         }
         return true;
       });
+      console.log("REQUEST BODY PARA WEB");
+      console.log(requestBody);
       request.post(process.env.WEB_NOTIFICATION, {
         headers: { 
           'Content-Type': 'application/json',
