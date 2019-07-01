@@ -61,7 +61,8 @@ const resolvers = {
       });
       console.log("REQUEST BODY PARA MOVIL");
       console.log(requestBody);
-      request.post(process.env.EXPO_NOTIFICATION, {
+      console.log(process.env.EXPO_NOTIFICATION);
+      request.post("https://exp.host/--/api/v2/push/send", {
         headers: { 'Content-Type': 'application/json' },
         body: requestBody,
         json: true
@@ -84,6 +85,7 @@ const resolvers = {
       });
       console.log("REQUEST BODY PARA WEB");
       console.log(requestBody);
+      console.log(process.env.WEB_NOTIFICATION);
       request.post(process.env.WEB_NOTIFICATION, {
         headers: { 
           'Content-Type': 'application/json',
