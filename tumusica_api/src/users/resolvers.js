@@ -26,14 +26,14 @@ const resolvers = {
 		loginUser: (_, { user }) =>
       		generalRequest(`${URL_LOGIN}`, 'POST', user),
 		addToken: async (_, { token }) => {
-      /* const response = await generalRequest(`${URL_TOKEN}${token.userID}`, '');
+      const response = await generalRequest(`${URL_TOKEN}${token.userID}`, '');
       const elements = response.filter(x => x.tokenType == token.tokenType && x.token == token.token);
       console.log(response);
       console.log(elements);
       console.log(elements.length);
       if (elements.length > 0) {
         return elements[0];
-      } */ 
+      } 
 			generalRequest(`${URL_TOKEN}`, 'POST', token)
     },
 	}
